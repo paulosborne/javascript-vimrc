@@ -32,6 +32,7 @@ Bundle 'honza/vim-snippets'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'juvenn/mustache.vim'
 Bundle 'bling/vim-airline'
+Bundle 'bling/vim-bufferline'
 
 imap <C-c> <CR><Esc>
 
@@ -84,4 +85,8 @@ let NERDTreeShowHidden=1
       let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
       nnoremap <F2> :NERDTreeToggle<CR>
       nnoremap <F3> :NERDTreeFind<CR>
+
+
+let g:airline#extensions#tabline#enabled = 1
+
 colorscheme distinguished
