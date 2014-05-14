@@ -45,7 +45,7 @@ filetype plugin indent on
 :set mouse=a
 :set cursorline			
 :set ruler
-:set history=100    
+:set history=1000    
 :set shiftwidth=4 	
 :set tabstop=4	
 :set softtabstop=4
