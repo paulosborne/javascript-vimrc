@@ -10,4 +10,3 @@
   vim +BundleInstall +qall
 
   echo === Done
-fi
