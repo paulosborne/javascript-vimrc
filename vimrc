@@ -1,4 +1,3 @@
-set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
@@ -31,13 +30,15 @@ Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
 Bundle 'honza/vim-snippets'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'ap/vim-css-color'
 
 imap <C-c> <CR><Esc>
 
 filetype plugin indent on
 
 
-
+:set nocompatible
+:set shortmess +=I
 :set number
 :set mouse=a
 :set cursorline			
@@ -47,7 +48,9 @@ filetype plugin indent on
 :set tabstop=4	
 :set softtabstop=4
 :set expandtab
-:set list
+:set ai
+:set nolist
+:set ttyfast
 :syntax on
 
 let g:neosnippet#enable_snipmate_compatibility = 1
