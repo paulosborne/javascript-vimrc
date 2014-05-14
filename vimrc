@@ -38,25 +38,51 @@ imap <C-c> <CR><Esc>
 
 filetype plugin indent on
 
-
 :set nocompatible
 :set shortmess +=I
 :set number
 :set mouse=a
-:set cursorline			
+:set cursorline
 :set ruler
-:set history=1000    
-:set shiftwidth=4 	
-:set tabstop=4	
+:set history=1000
+:set shiftwidth=4
+:set tabstop=4
 :set softtabstop=4
 :set expandtab
 :set ai
-:set nolist
+:set list
 :set ttyfast
 :syntax on
 
+function! Preserve(command) "{{{
+    " preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    execute a:command
+    " clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+ endfunction "}}}
+function! StripTrailingWhitespace() "{{{
+    call Preserve("%s/\\s\\+$//e")
+endfunction "}}}"
+
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#snippets_directory ='~/.vim/bundle/vim-snippets/snippets'
+let g:airline#extensions#tabline#enabled = 1
+
+" remap arrow keys in normal mode
+nnoremap <left> :bprev<CR>
+nnoremap <right> :bnext<CR>
+nnoremap <up> :tabnext<CR>
+nnoremap <down> :tabprev<CR>
+nnoremap <F2> :NERDTreeToggle<CR>
+
+nmap <leader>f$ :call StripTrailingWhitespace()<CR>
+map <F6> :set invpaste<CR>:set paste?<CR>
+
+nnoremap <F3> :NERDTreeFind<CR>
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -77,16 +103,11 @@ if has('conceal')
 endif
 
 let NERDTreeShowHidden=1
-      let NERDTreeQuitOnOpen=0
-      let NERDTreeShowLineNumbers=1
-      let NERDTreeChDirMode=0
-      let NERDTreeShowBookmarks=1
-      let NERDTreeIgnore=['\.git','\.hg']
-      let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
-      nnoremap <F2> :NERDTreeToggle<CR>
-      nnoremap <F3> :NERDTreeFind<CR>
-
-
-let g:airline#extensions#tabline#enabled = 1
+let NERDTreeQuitOnOpen=0
+let NERDTreeShowLineNumbers=1
+let NERDTreeChDirMode=0
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.git','\.hg']
+let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
 
 colorscheme distinguished
