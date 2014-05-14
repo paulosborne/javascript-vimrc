@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
   echo === Checking out vundle
   git submodule update --init
 
