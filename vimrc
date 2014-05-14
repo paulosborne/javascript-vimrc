@@ -30,7 +30,7 @@ Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
 Bundle 'honza/vim-snippets'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'ap/vim-css-color'
+Bundle 'juvenn/mustache.vim'
 
 imap <C-c> <CR><Esc>
 
