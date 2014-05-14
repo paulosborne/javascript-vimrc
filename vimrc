@@ -31,6 +31,7 @@ Bundle 'Shougo/neosnippet-snippets'
 Bundle 'honza/vim-snippets'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'juvenn/mustache.vim'
+Bundle 'bling/vim-airline'
 
 imap <C-c> <CR><Esc>
 
