@@ -1,4 +1,3 @@
-Work in progress :)
 
 ```
 git clone https://github.com/posbo/vimrc.git ~/.vim
