@@ -5,10 +5,8 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
-
 Bundle 'groenewege/vim-less'
 Bundle 'ap/vim-css-color'
-
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
@@ -38,21 +36,23 @@ imap <C-c> <CR><Esc>
 
 filetype plugin indent on
 
-:set nocompatible
-:set shortmess +=I
-:set number
-:set mouse=a
-:set cursorline
-:set ruler
-:set history=1000
-:set shiftwidth=4
-:set tabstop=4
-:set softtabstop=4
-:set expandtab
-:set ai
-:set list
-:set ttyfast
-:syntax on
+set nocompatible
+set shortmess +=I
+set number
+set mouse=a
+set cursorline
+set ruler
+set history=1000
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set autoindent
+set expandtab
+set ai
+set list
+set ttyfast
+set hlsearch
+syntax on
 
 function! Preserve(command) "{{{
     " preparation: save last search, and cursor position.
@@ -71,6 +71,7 @@ endfunction "}}}"
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory ='~/.vim/bundle/vim-snippets/snippets'
 let g:airline#extensions#tabline#enabled = 1
+let g:syntastic_javascript_syntax_checker = "jshint"
 
 " remap arrow keys in normal mode
 nnoremap <left> :bprev<CR>
@@ -79,6 +80,7 @@ nnoremap <up> :tabnext<CR>
 nnoremap <down> :tabprev<CR>
 nnoremap <F2> :NERDTreeToggle<CR>
 
+nmap <leader>t :tabnew<CR>
 nmap <leader>f$ :call StripTrailingWhitespace()<CR>
 map <F6> :set invpaste<CR>:set paste?<CR>
 
