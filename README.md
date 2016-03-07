@@ -1,6 +1,8 @@
+# Lightweight JavaScript Vimrc
+This is an intentionally minimal vimrc, it's currently being used in an hostile windows environment - the modules have been carefully chosen due to their minimal performance impace.
 
 ```
 git clone https://github.com/posbo/vimrc.git ~/.vim
 ln -s ~/.vim/vimrc ~/.vimrc
-vim +BundleInstall +qall
+cd ~/.vim && git submodule init
 ```
