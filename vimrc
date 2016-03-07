@@ -1,115 +1,67 @@
-filetype off
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'groenewege/vim-less'
-Bundle 'ap/vim-css-color'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-sensible'
-Bundle 'helino/vim-json'
-Bundle 'wookiehangover/jshint.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'Raimondi/delimitMate'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Lokaltog/vim-distinguished'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tacahiroy/ctrlp-funky'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
-Bundle 'honza/vim-snippets'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'juvenn/mustache.vim'
-Bundle 'bling/vim-airline'
-Bundle 'bling/vim-bufferline'
-
-imap <C-c> <CR><Esc>
-
-filetype plugin indent on
-
 set nocompatible
-set shortmess +=I
-set number
-set mouse=a
-set cursorline
-set ruler
-set history=1000
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
-set autoindent
-set expandtab
-set ai
-set list
-set ttyfast
-set hlsearch
-syntax on
+call pathogen#infect()
 
-function! Preserve(command) "{{{
-    " preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    execute a:command
-    " clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
- endfunction "}}}
-function! StripTrailingWhitespace() "{{{
-    call Preserve("%s/\\s\\+$//e")
-endfunction "}}}"
+filetype indent on
+syntax enable
 
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory ='~/.vim/bundle/vim-snippets/snippets'
-let g:airline#extensions#tabline#enabled = 1
-let g:syntastic_javascript_syntax_checker = "jshint"
+" base configuration {{{
 
-" remap arrow keys in normal mode
-nnoremap <left> :bprev<CR>
-nnoremap <right> :bnext<CR>
-nnoremap <up> :tabnext<CR>
-nnoremap <down> :tabprev<CR>
-nnoremap <F2> :NERDTreeToggle<CR>
+  set shortmess=I         " disable splash screen
+  set mouse=a             " allow mouse interaction
+  set mousehide           " hide mouse when you typing
+  set nowrap              " dont wrap long lines
+  set cursorline
+  set encoding=utf-8      " set display encoding
+  set number              " show line numbers
+  set showcmd
+  set ttyfast             " enable fast rendering
+  set switchbuf=useopen   " dont duplicate an existing buffer
+  set history=1000
 
-nmap <leader>t :tabnew<CR>
-nmap <leader>f$ :call StripTrailingWhitespace()<CR>
-map <F6> :set invpaste<CR>:set paste?<CR>
+  " whitespace
+  set tabstop=2           " number of spaces per tab for display
+  set softtabstop=2       " number of spaces per tab in insert mode
+  set shiftwidth=2        " number of spaces when indenting
+  set expandtab           " spaces instead of tabs
+  set autoindent          " automatically indent to match adjacent lines
+  set smartindent         " use shiftwidth to enter tabs
+  set ai                  " set auto-indenting
 
-nnoremap <F3> :NERDTreeFind<CR>
+  set wildmenu            " autocomplete vim commands
+  set wildignorecase      "
+  set linebreak
+  set backspace=indent,eol,start  " make backspace behave in a sane manner
+  set undodir=$HOME/.vim/undir  " allows for persistent undos even after file has been closed
+  set undofile
+  set backupcopy=yes      " overwrite file on save, ensure changes are picked up by watchers
+  set formatoptions+=roc    " automatically complete comments
 
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+"}}}
 
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)"
-            \: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)"
-            \: "\<TAB>"
+set path=$PWD/**
+let g:used_javascript_libs = 'underscore,angularjs,angularuirouter,jasmine'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let mapleader=","
 
-" For snippet_complete marker.
-if has('conceal')
-    set conceallevel=2 concealcursor=i
-endif
 
-let NERDTreeShowHidden=1
-let NERDTreeQuitOnOpen=0
-let NERDTreeShowLineNumbers=1
-let NERDTreeChDirMode=0
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.git','\.hg']
-let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
+" statusline {{{
 
-colorscheme distinguished
+  set statusline+=%#warningmsg#
+  set statusline+=%{fugitive#head()}
+  set statusline+=%*
+
+" }}}
+
+" mapping {{{
+
+  map <F3> :ls
+  map <F2> :NERDTreeToggle<CR>
+
+" }}}
+
+
+" remove whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+colorscheme molokai
