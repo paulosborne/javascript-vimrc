@@ -1,0 +1,43 @@
+snippet log
+	console.log(${1});
+
+snippet get
+	get ${1}(${2}) {
+		${0}
+	}
+
+snippet set
+	set ${1}(${2}) {
+		${0}
+	}
+
+snippet directive
+	/* @ngInject */
+	export default () => ({
+		restrict: 'AE${1}',
+		controller: ${2},
+		controllerAs: 'vm',
+		templateUrl
+	});
+
+snippet controller
+	export default class ${1} {
+		/* @ngInject */
+		constructor(${2}) {
+			super(arguments);
+		}
+	};
+
+snippet module
+	export default angular.module(${1}, [${2}]);
+
+snippet im
+	import ${1} from '${2}';
+
+snippet if
+	if (${1:true}) {
+		${0}
+	}
+
+snippet ret
+	return ${1};
