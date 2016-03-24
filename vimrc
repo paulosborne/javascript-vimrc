@@ -35,8 +35,6 @@ endfor
   set ttyfast             " enable fast rendering
   set switchbuf=useopen   " dont duplicate an existing buffer
   set history=1000
-
-  " whitespace
   let &tabstop=s:settings.default_indent     " number of spaces per tab for display
   let &softtabstop=s:settings.default_indent " number of spaces per tab in insert mode
   let &shiftwidth=s:settings.default_indent  " number of spaces when indenting
@@ -44,7 +42,6 @@ endfor
   set autoindent          " automatically indent to match adjacent lines
   set smartindent         " use shiftwidth to enter tabs
   set ai                  " set auto-indenting
-
   set wildmenu            " autocomplete vim commands
   set wildignorecase      "
   set linebreak
@@ -62,7 +59,6 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let mapleader=","
 
-
 " statusline {{{
 
   set statusline+=%#warningmsg#
@@ -77,7 +73,6 @@ let mapleader=","
   map <F2> :NERDTreeToggle<CR>
 
 " }}}
-
 
 " remove whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
