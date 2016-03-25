@@ -1,7 +1,7 @@
 # Lightweight JavaScript Vimrc
 
 ```
-git clone --recursive https://github.com/paulosborne/lightweight-javascript-vimrc.git ~/.vim
+git clone --recursive https://github.com/paulosborne/javascript-vimrc.git ~/.vim
 ```
 Example .vimrc
 ```
